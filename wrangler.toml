@@ -1,9 +1,9 @@
 # Cloudflare Pages Configuration
 # This file is auto-detected by Cloudflare Pages for build settings
+# Build command must be set in Cloudflare Dashboard: Settings > Builds & deployments
+# Build command: npm run build
+# Build output directory is auto-detected from pages_build_output_dir below
 
 name = "bantu-sesama"
 pages_build_output_dir = "out"
 compatibility_date = "2024-01-01"
-
-[build]
-command = "npm run build"
