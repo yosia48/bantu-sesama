@@ -1,17 +1,9 @@
-# Cloudflare Workers Configuration
-# Rename this file and update values before deploying
+# Cloudflare Pages Configuration
+# This file is auto-detected by Cloudflare Pages for build settings
 
-name = "bantu-sesama-api"
-main = "worker/index.ts"
+name = "bantu-sesama"
+pages_build_output_dir = "out"
 compatibility_date = "2024-01-01"
 
-# Cloudflare D1 Database
-[[d1_databases]]
-binding = "DB"
-database_name = "bantu-sesama-db"
-database_id = "YOUR_DATABASE_ID_HERE"
-
-# Cloudflare R2 Storage (for images)
-# [[r2_buckets]]
-# binding = "BUCKET"
-# bucket_name = "bantu-sesama-images"
+[build]
+command = "npm run build"
