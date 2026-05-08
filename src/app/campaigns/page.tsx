@@ -3,6 +3,7 @@
 import { useState } from "react";
 import CampaignCard from "@/components/CampaignCard";
 import { mockCampaigns } from "@/lib/mock-data";
+import { getCategoryIcon } from "@/lib/utils";
 
 const categories = [
   "Semua",
@@ -30,41 +31,49 @@ export default function CampaignsPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <div className="bg-white border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+      <div className="gradient-hero hero-pattern text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+          <span className="text-sm font-bold uppercase tracking-wider text-sky-200">Jelajahi</span>
+          <h1 className="text-3xl md:text-4xl font-extrabold mt-2 mb-3">
             Semua Campaign
           </h1>
-          <p className="text-gray-500">
-            Temukan campaign yang membutuhkan bantuanmu
+          <p className="text-white/70 max-w-lg">
+            Temukan campaign yang membutuhkan bantuanmu dan buat perbedaan hari ini
           </p>
 
           {/* Search */}
-          <div className="mt-6">
-            <div className="relative max-w-md">
+          <div className="mt-8">
+            <div className="relative max-w-lg">
               <input
                 type="text"
-                placeholder="Cari campaign..."
+                placeholder="Cari campaign, lokasi, atau kategori..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none"
+                className="w-full pl-12 pr-4 py-3.5 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl text-white placeholder-white/50 focus:bg-white/20 focus:border-white/40 outline-none transition-all"
               />
-              <span className="absolute left-3 top-2.5 text-gray-400">🔍</span>
+              <span className="absolute left-4 top-3.5 text-white/50 text-lg">🔍</span>
             </div>
           </div>
+        </div>
+      </div>
 
-          {/* Categories */}
-          <div className="mt-4 flex flex-wrap gap-2">
+      {/* Categories */}
+      <div className="bg-white border-b shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <div className="flex flex-wrap gap-2">
             {categories.map((category) => (
               <button
                 key={category}
                 onClick={() => setSelectedCategory(category)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                className={`px-5 py-2.5 rounded-xl text-sm font-semibold transition-all ${
                   selectedCategory === category
-                    ? "bg-sky-500 text-white"
-                    : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                    ? "btn-primary text-white shadow-md"
+                    : "bg-gray-50 text-gray-600 hover:bg-gray-100 border border-gray-200"
                 }`}
               >
+                {category !== "Semua" && (
+                  <span className="mr-1.5">{getCategoryIcon(category)}</span>
+                )}
                 {category}
               </button>
             ))}
@@ -73,20 +82,27 @@ export default function CampaignsPage() {
       </div>
 
       {/* Campaign Grid */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div className="flex items-center justify-between mb-6">
+          <p className="text-sm text-gray-500 font-medium">
+            {filteredCampaigns.length} campaign ditemukan
+          </p>
+        </div>
         {filteredCampaigns.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredCampaigns.map((campaign) => (
               <CampaignCard key={campaign.id} campaign={campaign} />
             ))}
           </div>
         ) : (
-          <div className="text-center py-16">
-            <span className="text-6xl mb-4 block">🔍</span>
-            <h3 className="text-xl font-semibold text-gray-600 mb-2">
+          <div className="text-center py-20">
+            <div className="w-20 h-20 bg-gray-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+              <span className="text-4xl">🔍</span>
+            </div>
+            <h3 className="text-xl font-bold text-gray-700 mb-2">
               Tidak ada campaign ditemukan
             </h3>
-            <p className="text-gray-400">
+            <p className="text-gray-400 text-sm">
               Coba ubah filter atau kata kunci pencarian
             </p>
           </div>

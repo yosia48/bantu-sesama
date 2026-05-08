@@ -60,17 +60,19 @@ export default function SubmitPage() {
   if (submitted) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
-        <div className="bg-white rounded-xl p-8 shadow-sm border border-gray-100 max-w-md text-center">
-          <span className="text-6xl block mb-4">🎉</span>
-          <h2 className="text-2xl font-bold mb-2">Pengajuan Terkirim!</h2>
-          <p className="text-gray-500 mb-6">
+        <div className="bg-white rounded-2xl p-10 shadow-lg border border-gray-100 max-w-md text-center">
+          <div className="w-20 h-20 bg-gradient-to-br from-emerald-400 to-green-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-md">
+            <span className="text-4xl">🎉</span>
+          </div>
+          <h2 className="text-2xl font-extrabold text-gray-900 mb-3">Pengajuan Terkirim!</h2>
+          <p className="text-gray-500 mb-8 leading-relaxed">
             Terima kasih telah mengajukan campaign. Tim kami akan melakukan
             review dalam 1-3 hari kerja. Kami akan menghubungi Anda melalui
             kontak yang diberikan.
           </p>
           <a
             href="/"
-            className="inline-block bg-sky-500 hover:bg-sky-600 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
+            className="inline-block btn-primary text-white px-8 py-3.5 rounded-xl font-bold shadow-md"
           >
             Kembali ke Beranda
           </a>
@@ -81,40 +83,69 @@ export default function SubmitPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="max-w-3xl mx-auto px-4 py-8">
-        {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+      {/* Header */}
+      <div className="gradient-hero hero-pattern text-white">
+        <div className="max-w-3xl mx-auto px-4 py-12 md:py-16">
+          <span className="text-sm font-bold uppercase tracking-wider text-sky-200">Pengajuan</span>
+          <h1 className="text-3xl md:text-4xl font-extrabold mt-2 mb-3">
             Ajukan Campaign Bantuan
           </h1>
-          <p className="text-gray-500">
+          <p className="text-white/70 max-w-lg">
             Ceritakan kebutuhanmu. Kami akan membantu mempertemukanmu dengan
             orang-orang baik yang ingin membantu.
           </p>
         </div>
+      </div>
+
+      <div className="max-w-3xl mx-auto px-4 -mt-6 pb-12">
+        {/* Step Indicator */}
+        <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-5 mb-8">
+          <div className="flex items-center justify-between">
+            {[
+              { num: "1", label: "Info Campaign" },
+              { num: "2", label: "Data Penerima" },
+              { num: "3", label: "Kontak" },
+              { num: "4", label: "Kirim" },
+            ].map((step, i) => (
+              <div key={step.num} className="flex items-center">
+                <div className="flex flex-col items-center">
+                  <div className="w-8 h-8 bg-gradient-to-br from-sky-500 to-emerald-500 rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-sm">
+                    {step.num}
+                  </div>
+                  <span className="text-xs text-gray-500 mt-1.5 font-medium hidden sm:block">{step.label}</span>
+                </div>
+                {i < 3 && <div className="w-8 sm:w-16 h-0.5 bg-gray-200 mx-2 sm:mx-3" />}
+              </div>
+            ))}
+          </div>
+        </div>
 
         {/* Info Box */}
-        <div className="bg-sky-50 border border-sky-200 rounded-xl p-4 mb-8">
-          <h3 className="font-semibold text-sky-800 mb-2">
-            ℹ️ Sebelum mengajukan:
+        <div className="bg-gradient-to-r from-sky-50 to-blue-50 border border-sky-200 rounded-2xl p-5 mb-8">
+          <h3 className="font-bold text-sky-800 mb-3 flex items-center gap-2">
+            <span className="w-7 h-7 bg-sky-100 rounded-lg flex items-center justify-center text-sm">ℹ️</span>
+            Sebelum mengajukan:
           </h3>
-          <ul className="text-sm text-sky-700 space-y-1">
-            <li>• Pastikan cerita Anda jujur dan dapat diverifikasi</li>
-            <li>• Siapkan nomor rekening penerima bantuan</li>
-            <li>• Sertakan kontak yang bisa dihubungi</li>
-            <li>• Proses review membutuhkan 1-3 hari kerja</li>
+          <ul className="text-sm text-sky-700 space-y-2">
+            <li className="flex items-start gap-2"><span className="text-sky-400 mt-0.5">●</span> Pastikan cerita Anda jujur dan dapat diverifikasi</li>
+            <li className="flex items-start gap-2"><span className="text-sky-400 mt-0.5">●</span> Siapkan nomor rekening penerima bantuan</li>
+            <li className="flex items-start gap-2"><span className="text-sky-400 mt-0.5">●</span> Sertakan kontak yang bisa dihubungi</li>
+            <li className="flex items-start gap-2"><span className="text-sky-400 mt-0.5">●</span> Proses review membutuhkan 1-3 hari kerja</li>
           </ul>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-8">
+        <form onSubmit={handleSubmit} className="space-y-6">
           {/* Campaign Info */}
-          <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-            <h2 className="text-xl font-semibold mb-4">
-              📝 Informasi Campaign
-            </h2>
-            <div className="space-y-4">
+          <div className="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-10 h-10 bg-sky-100 rounded-xl flex items-center justify-center">
+                <span className="text-xl">📝</span>
+              </div>
+              <h2 className="text-lg font-bold text-gray-900">Informasi Campaign</h2>
+            </div>
+            <div className="space-y-5">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-semibold text-gray-700 mb-1.5">
                   Judul Campaign <span className="text-red-500">*</span>
                 </label>
                 <input
@@ -124,12 +155,12 @@ export default function SubmitPage() {
                   value={formData.title}
                   onChange={handleChange}
                   placeholder="Contoh: Bantu Biaya Operasi Anak Ibu Siti"
-                  className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none"
+                  className="w-full px-4 py-3 border border-gray-200 rounded-xl outline-none text-sm"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-semibold text-gray-700 mb-1.5">
                   Cerita Lengkap <span className="text-red-500">*</span>
                 </label>
                 <textarea
@@ -139,13 +170,13 @@ export default function SubmitPage() {
                   value={formData.story}
                   onChange={handleChange}
                   placeholder="Ceritakan dengan jujur dan detail situasi yang membutuhkan bantuan..."
-                  className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none resize-none"
+                  className="w-full px-4 py-3 border border-gray-200 rounded-xl outline-none resize-none text-sm"
                 />
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-semibold text-gray-700 mb-1.5">
                     Kategori <span className="text-red-500">*</span>
                   </label>
                   <select
@@ -153,18 +184,16 @@ export default function SubmitPage() {
                     required
                     value={formData.category}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none"
+                    className="w-full px-4 py-3 border border-gray-200 rounded-xl outline-none text-sm"
                   >
                     <option value="">Pilih kategori</option>
                     {categories.map((cat) => (
-                      <option key={cat} value={cat}>
-                        {cat}
-                      </option>
+                      <option key={cat} value={cat}>{cat}</option>
                     ))}
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-semibold text-gray-700 mb-1.5">
                     Lokasi <span className="text-red-500">*</span>
                   </label>
                   <input
@@ -174,13 +203,13 @@ export default function SubmitPage() {
                     value={formData.location}
                     onChange={handleChange}
                     placeholder="Contoh: Jakarta Timur"
-                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none"
+                    className="w-full px-4 py-3 border border-gray-200 rounded-xl outline-none text-sm"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-semibold text-gray-700 mb-1.5">
                   Target Dana (Rp) <span className="text-red-500">*</span>
                 </label>
                 <input
@@ -190,24 +219,26 @@ export default function SubmitPage() {
                   value={formData.targetAmount}
                   onChange={handleChange}
                   placeholder="Contoh: 50000000"
-                  className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none"
+                  className="w-full px-4 py-3 border border-gray-200 rounded-xl outline-none text-sm"
                 />
               </div>
             </div>
           </div>
 
           {/* Recipient Info */}
-          <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-            <h2 className="text-xl font-semibold mb-4">
-              💳 Informasi Penerima Donasi
-            </h2>
-            <p className="text-sm text-gray-500 mb-4">
-              Donasi akan dikirim langsung ke rekening penerima. Pastikan data
-              benar.
-            </p>
-            <div className="space-y-4">
+          <div className="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-10 h-10 bg-emerald-100 rounded-xl flex items-center justify-center">
+                <span className="text-xl">💳</span>
+              </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <h2 className="text-lg font-bold text-gray-900">Informasi Penerima Donasi</h2>
+                <p className="text-xs text-gray-500">Donasi langsung ke rekening penerima</p>
+              </div>
+            </div>
+            <div className="space-y-5">
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-1.5">
                   Nama Penerima <span className="text-red-500">*</span>
                 </label>
                 <input
@@ -217,12 +248,12 @@ export default function SubmitPage() {
                   value={formData.recipientName}
                   onChange={handleChange}
                   placeholder="Nama sesuai rekening"
-                  className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none"
+                  className="w-full px-4 py-3 border border-gray-200 rounded-xl outline-none text-sm"
                 />
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-semibold text-gray-700 mb-1.5">
                     Nama Bank <span className="text-red-500">*</span>
                   </label>
                   <input
@@ -232,11 +263,11 @@ export default function SubmitPage() {
                     value={formData.recipientBank}
                     onChange={handleChange}
                     placeholder="Contoh: BCA, BRI, Mandiri"
-                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none"
+                    className="w-full px-4 py-3 border border-gray-200 rounded-xl outline-none text-sm"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-semibold text-gray-700 mb-1.5">
                     Nomor Rekening <span className="text-red-500">*</span>
                   </label>
                   <input
@@ -246,13 +277,13 @@ export default function SubmitPage() {
                     value={formData.recipientAccount}
                     onChange={handleChange}
                     placeholder="Nomor rekening penerima"
-                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none"
+                    className="w-full px-4 py-3 border border-gray-200 rounded-xl outline-none text-sm"
                   />
                 </div>
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Link Pembayaran (opsional)
+                <label className="block text-sm font-semibold text-gray-700 mb-1.5">
+                  Link Pembayaran <span className="text-gray-400 font-normal">(opsional)</span>
                 </label>
                 <input
                   type="url"
@@ -260,24 +291,26 @@ export default function SubmitPage() {
                   value={formData.paymentLink}
                   onChange={handleChange}
                   placeholder="https://..."
-                  className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none"
+                  className="w-full px-4 py-3 border border-gray-200 rounded-xl outline-none text-sm"
                 />
               </div>
             </div>
           </div>
 
           {/* Contact Info */}
-          <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-            <h2 className="text-xl font-semibold mb-4">
-              📞 Kontak (Tidak Dipublikasikan)
-            </h2>
-            <p className="text-sm text-gray-500 mb-4">
-              Data kontak hanya digunakan untuk verifikasi dan tidak akan
-              ditampilkan ke publik.
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-10 h-10 bg-purple-100 rounded-xl flex items-center justify-center">
+                <span className="text-xl">📞</span>
+              </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <h2 className="text-lg font-bold text-gray-900">Kontak</h2>
+                <p className="text-xs text-gray-500">Tidak dipublikasikan, hanya untuk verifikasi</p>
+              </div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-1.5">
                   Nomor WhatsApp <span className="text-red-500">*</span>
                 </label>
                 <input
@@ -287,11 +320,11 @@ export default function SubmitPage() {
                   value={formData.contactPhone}
                   onChange={handleChange}
                   placeholder="08xxxxxxxxxx"
-                  className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none"
+                  className="w-full px-4 py-3 border border-gray-200 rounded-xl outline-none text-sm"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-semibold text-gray-700 mb-1.5">
                   Email <span className="text-red-500">*</span>
                 </label>
                 <input
@@ -301,34 +334,34 @@ export default function SubmitPage() {
                   value={formData.contactEmail}
                   onChange={handleChange}
                   placeholder="email@contoh.com"
-                  className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none"
+                  className="w-full px-4 py-3 border border-gray-200 rounded-xl outline-none text-sm"
                 />
               </div>
             </div>
           </div>
 
           {/* Privacy & Agreement */}
-          <div className="bg-amber-50 border border-amber-200 rounded-xl p-4">
-            <h3 className="font-semibold text-amber-800 mb-2">
-              🔒 Perlindungan Privasi
-            </h3>
-            <ul className="text-sm text-amber-700 space-y-1 mb-4">
-              <li>• NIK dan alamat lengkap TIDAK akan ditampilkan</li>
-              <li>• Data medis detail TIDAK akan dipublikasikan</li>
-              <li>• Kontak pribadi TIDAK akan ditampilkan ke publik</li>
-              <li>
-                • Hanya nama, cerita, foto kondisi, dan progress yang
-                ditampilkan
-              </li>
+          <div className="bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 rounded-2xl p-6">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-10 h-10 bg-amber-100 rounded-xl flex items-center justify-center">
+                <span className="text-xl">🔒</span>
+              </div>
+              <h3 className="font-bold text-amber-800">Perlindungan Privasi</h3>
+            </div>
+            <ul className="text-sm text-amber-700 space-y-2 mb-5">
+              <li className="flex items-start gap-2"><span className="text-amber-400 mt-0.5">●</span> NIK dan alamat lengkap TIDAK akan ditampilkan</li>
+              <li className="flex items-start gap-2"><span className="text-amber-400 mt-0.5">●</span> Data medis detail TIDAK akan dipublikasikan</li>
+              <li className="flex items-start gap-2"><span className="text-amber-400 mt-0.5">●</span> Kontak pribadi TIDAK akan ditampilkan ke publik</li>
+              <li className="flex items-start gap-2"><span className="text-amber-400 mt-0.5">●</span> Hanya nama, cerita, foto kondisi, dan progress yang ditampilkan</li>
             </ul>
-            <label className="flex items-start gap-2 cursor-pointer">
+            <label className="flex items-start gap-3 cursor-pointer bg-white/60 backdrop-blur-sm rounded-xl p-4 border border-amber-200/50">
               <input
                 type="checkbox"
                 checked={agreed}
                 onChange={(e) => setAgreed(e.target.checked)}
-                className="mt-1"
+                className="mt-0.5 w-4 h-4 accent-sky-500"
               />
-              <span className="text-sm text-amber-800">
+              <span className="text-sm text-amber-800 leading-relaxed">
                 Saya menyatakan bahwa informasi yang saya berikan adalah benar
                 dan saya menyetujui ketentuan platform BantuSesama.
               </span>
@@ -339,7 +372,7 @@ export default function SubmitPage() {
           <button
             type="submit"
             disabled={!agreed}
-            className="w-full bg-sky-500 hover:bg-sky-600 disabled:bg-gray-300 disabled:cursor-not-allowed text-white py-3 rounded-lg font-semibold text-lg transition-colors"
+            className="w-full btn-primary disabled:opacity-40 disabled:cursor-not-allowed disabled:transform-none text-white py-4 rounded-xl font-bold text-lg shadow-lg"
           >
             Kirim Pengajuan Campaign
           </button>
