@@ -9,6 +9,12 @@ import {
 } from "@/lib/utils";
 import Badge from "@/components/Badge";
 
+export function generateStaticParams() {
+  return mockCampaigns.map((campaign) => ({
+    id: campaign.id,
+  }));
+}
+
 interface PageProps {
   params: Promise<{ id: string }>;
 }
