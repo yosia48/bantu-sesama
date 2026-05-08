@@ -6,12 +6,18 @@ main = "index.ts"
 compatibility_date = "2024-01-01"
 
 # Cloudflare D1 Database
+# SETUP:
+# 1. Buat database:    npx wrangler d1 create bantu-sesama-db
+# 2. Copy database_id dari output, paste di bawah
+# 3. Jalankan schema:  npx wrangler d1 execute bantu-sesama-db --remote --file=../schema.sql
+# 4. Deploy worker:    npx wrangler deploy
 [[d1_databases]]
 binding = "DB"
 database_name = "bantu-sesama-db"
-database_id = "YOUR_DATABASE_ID_HERE"
+# Ganti dengan ID asli dari: npx wrangler d1 list
+database_id = ""
 
-# Cloudflare R2 Storage (for images)
+# Cloudflare R2 Storage (for images - optional)
 # [[r2_buckets]]
 # binding = "BUCKET"
 # bucket_name = "bantu-sesama-images"
