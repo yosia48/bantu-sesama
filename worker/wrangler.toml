@@ -5,13 +5,27 @@ name = "bantu-sesama-api"
 main = "index.ts"
 compatibility_date = "2024-01-01"
 
+# Environment Variables
+# Set ADMIN_TOKEN via: npx wrangler secret put ADMIN_TOKEN
+# This token is used for Bearer authentication on admin endpoints.
+# Generate a secure token: openssl rand -hex 32
+
+# CORS Configuration
+# Set ALLOWED_ORIGIN via: npx wrangler secret put ALLOWED_ORIGIN
+# Example: https://bantu-sesama.pages.dev
+
 # Cloudflare D1 Database
+# 1. Create: npx wrangler d1 create bantu-sesama-db
+# 2. Copy the database_id from output below
+# 3. Run schema: npx wrangler d1 execute bantu-sesama-db --remote --file=../schema.sql
 [[d1_databases]]
 binding = "DB"
 database_name = "bantu-sesama-db"
 database_id = "YOUR_DATABASE_ID_HERE"
 
-# Cloudflare R2 Storage (for images)
+# Cloudflare R2 Storage (for document uploads)
+# 1. Create: npx wrangler r2 bucket create bantu-sesama-docs
+# 2. Uncomment below:
 # [[r2_buckets]]
 # binding = "BUCKET"
-# bucket_name = "bantu-sesama-images"
+# bucket_name = "bantu-sesama-docs"

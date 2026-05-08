@@ -1,5 +1,5 @@
 -- BantuSesama Database Schema for Cloudflare D1
--- Run: wrangler d1 execute bantu-sesama-db --file=./schema.sql
+-- Run: npx wrangler d1 execute bantu-sesama-db --remote --file=./schema.sql
 
 -- Campaigns table
 CREATE TABLE IF NOT EXISTS campaigns (
@@ -9,13 +9,11 @@ CREATE TABLE IF NOT EXISTS campaigns (
   category TEXT NOT NULL,
   location TEXT NOT NULL,
   target_amount INTEGER NOT NULL,
-  current_amount INTEGER DEFAULT 0,
   recipient_name TEXT NOT NULL,
   recipient_bank TEXT NOT NULL,
   recipient_account TEXT NOT NULL,
   recipient_qris TEXT,
   payment_link TEXT,
-  photo_url TEXT,
   status TEXT DEFAULT 'pending' CHECK(status IN ('pending', 'approved', 'rejected', 'completed')),
   contact_phone TEXT NOT NULL,
   contact_email TEXT NOT NULL,

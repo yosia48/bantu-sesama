@@ -9,13 +9,11 @@ export interface Campaign {
   category: string;
   location: string;
   targetAmount: number;
-  currentAmount: number;
   recipientName: string;
   recipientBank: string;
   recipientAccount: string;
   recipientQris?: string;
   paymentLink?: string;
-  photoUrl: string;
   badges: Badge[];
   status: CampaignStatus;
   createdAt: string;

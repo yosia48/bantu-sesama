@@ -3,7 +3,6 @@
 import { useState } from "react";
 import CampaignCard from "@/components/CampaignCard";
 import { mockCampaigns } from "@/lib/mock-data";
-import { getCategoryIcon } from "@/lib/utils";
 
 const categories = [
   "Semua",
@@ -51,7 +50,7 @@ export default function CampaignsPage() {
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full pl-12 pr-4 py-3.5 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl text-white placeholder-white/50 focus:bg-white/20 focus:border-white/40 outline-none transition-all"
               />
-              <span className="absolute left-4 top-3.5 text-white/50 text-lg">🔍</span>
+              <svg className="absolute left-4 top-4 w-5 h-5 text-white/50" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
             </div>
           </div>
         </div>
@@ -71,9 +70,6 @@ export default function CampaignsPage() {
                     : "bg-gray-50 text-gray-600 hover:bg-gray-100 border border-gray-200"
                 }`}
               >
-                {category !== "Semua" && (
-                  <span className="mr-1.5">{getCategoryIcon(category)}</span>
-                )}
                 {category}
               </button>
             ))}
@@ -97,7 +93,7 @@ export default function CampaignsPage() {
         ) : (
           <div className="text-center py-20">
             <div className="w-20 h-20 bg-gray-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-              <span className="text-4xl">🔍</span>
+              <svg className="w-10 h-10 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
             </div>
             <h3 className="text-xl font-bold text-gray-700 mb-2">
               Tidak ada campaign ditemukan
