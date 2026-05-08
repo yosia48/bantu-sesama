@@ -53,20 +53,22 @@ npm run build
 
 ### 1. Cloudflare Pages (Frontend)
 
+**Cara paling mudah — hubungkan GitHub repo di [Cloudflare Dashboard](https://dash.cloudflare.com):**
+
+1. Buka https://dash.cloudflare.com → **Workers & Pages** → **Create** → **Pages** → **Connect to Git**
+2. Pilih repository `bantu-sesama`
+3. **Framework preset**: `Next.js (Static HTML Export)`
+4. **Build command**: `npm run build`
+5. **Build output directory**: `out`
+6. Klik **Save and Deploy**
+7. Tunggu build selesai, website akan otomatis live!
+
+Atau deploy manual via CLI:
 ```bash
-# Login ke Cloudflare
 npx wrangler login
-
-# Build dan deploy
 npm run build
-npx wrangler pages deploy .next --project-name=bantu-sesama
+npx wrangler pages deploy out --project-name=bantu-sesama
 ```
-
-Atau hubungkan GitHub repo di [Cloudflare Dashboard](https://dash.cloudflare.com):
-1. Pages → Create a project → Connect to Git
-2. Pilih repository ini
-3. Build command: `npm run build`
-4. Build output directory: `.next`
 
 ### 2. Cloudflare D1 (Database)
 
@@ -99,8 +101,7 @@ bantu-sesama/
 │   │   ├── campaigns/        # Campaign listing
 │   │   ├── campaign/[id]/    # Campaign detail
 │   │   ├── submit/           # Submit campaign form
-│   │   ├── admin/            # Admin dashboard
-│   │   └── api/              # API routes
+│   │   └── admin/            # Admin dashboard
 │   ├── components/           # Reusable components
 │   ├── lib/                  # Utilities & mock data
 │   └── types/                # TypeScript types
